@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ef6c65a-dbad-44f1-acef-654201cd032d" name="Default" comment="">
+    <list default="true" id="4ef6c65a-dbad-44f1-acef-654201cd032d" name="Default" comment="Initial commit. Added gitignore file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -236,8 +236,7 @@
     <MESSAGE value="Initial commit. Added gitignore file" />
     <MESSAGE value="Added two folders (css and js) to new folder (lib) inside of static folder" />
     <MESSAGE value="Added MongoDb connection to flask project. defined the constant FIELDS(to retrieve the record fields I require). Retrieved the collections 'projects'. Returned the collection as a list in json format" />
-    <MESSAGE value="Added html for charts to index.html using bootstrap for chart construction. Also added links to 3rd party css and javascript to enable data binding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added html for charts to index.html using bootstrap for chart construction. Also added links to 3rd party css and javascript to enable data binding" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added MongoDb connection to flask project. defined the constant FIELDS(to retrieve the record fields I require). Retrieved the collections 'projects'. Returned the collection as a list in json format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
