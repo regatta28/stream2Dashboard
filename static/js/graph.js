@@ -7,6 +7,17 @@ function makeGraphs(error, socialHousingProjects) {
         throw error;
     }
 
+    socialHousingProjects.forEach(function (d) {
+        d["Number of Units"] = +d["Number of Units"];
+        d["Stage 1 Capital Appraisal"] = d["Stage 1 Capital Appraisal"];
+        d["Stage 2 Pre Planning"] = d["Stage 2 Pre Planning"];
+        d["Stage 3 Pre Tender design"] = d["Stage 3 Pre Tender design"];
+        d["Stage4 Tender Report or Final Turnkey/CALF approval"] = d["Stage4 Tender Report or Final Turnkey/CALF approval"];
+        d["Site Start"] = d["Site Start"];
+        d["Site Finish"] = d["Site Finish"];
+        d["LA"] = d["LA"];
+    });
+
     var ndx = crossfilter(socialHousingProjects);
 
     var numberOfUnits = ndx.dimension(function (d) {
@@ -33,5 +44,18 @@ function makeGraphs(error, socialHousingProjects) {
     var housesperArea = ndx.dimension(function (d) {
         return d["LA"];
     });
+
+    var numOfUnits = numberOfUnits.group();
+    var numStage1 = stage1.group();
+    var numStage2 = stage2.group();
+    var numStage3 = stage3.group();
+    var numStage4 = stage4.group();
+    var numsiteStart = siteStart.group();
+    var numsiteFinish = siteFinish.group();
+    var numhousesPerArea = housesperArea.group().reduceSum(function (d) {
+        return d["Number of Units"];
+    });
+
+
 }
 
