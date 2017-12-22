@@ -58,6 +58,9 @@ function makeGraphs(error, socialHousingProjects) {
         return d["numberofUnits"];
     });
 
+    var housePerCityChart = dc.linechart("#housesPerArea");
+    var statusPie = dc.piechart("#stageofCompl_pie-chart");
+
 
 
 }
