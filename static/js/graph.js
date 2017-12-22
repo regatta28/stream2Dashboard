@@ -54,7 +54,10 @@ function makeGraphs(error, socialHousingProjects) {
     var numStage4 = stage4.group();
     var numsiteStart = siteStart.group();
     var numsiteFinish = siteFinish.group();
-    
+    var housesPerCity = filteredCities.group().reduceSum(function (d) {
+        return d["numberofUnits"];
+    });
+
 
 
 }
