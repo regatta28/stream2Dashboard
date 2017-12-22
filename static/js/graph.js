@@ -43,6 +43,8 @@ function makeGraphs(error, socialHousingProjects) {
     });
     var housesperArea = ndx.dimension(function (d) {
         return d["LA"];
+        housesperArea.filterAll()
+        var filteredCities = housesperArea.filter (function(d) {if (d === "Galway City" || d ==="Dublin City" || d === "Cork City" || d === "Cork City") {return d;}});
     });
 
     var numOfUnits = numberOfUnits.group();
@@ -52,9 +54,7 @@ function makeGraphs(error, socialHousingProjects) {
     var numStage4 = stage4.group();
     var numsiteStart = siteStart.group();
     var numsiteFinish = siteFinish.group();
-    var numhousesPerArea = housesperArea.group().reduceSum(function (d) {
-        return d["Number of Units"];
-    });
+    
 
 
 }
