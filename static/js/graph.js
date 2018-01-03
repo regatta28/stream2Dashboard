@@ -16,8 +16,10 @@ function makeGraphs(error, socialHousingProjects) {
     var ndx = crossfilter(socialHousingProjects);
     var all = ndx.groupAll();
 
-    var cityDim = ndx.dimension( function(d) { return d["LA"]; });
-    var numberOfUnitsDim = ndx.dimension( function(d) { return d["Number of Units"]; });
+    var cityDim = ndx.dimension( function(d) { return d["la"];
+    });
+    var numberOfUnitsDim = ndx.dimension( function(d) { return d["number_of_units"];
+    });
 
     var cityGroup = cityDim.group();
     var numberOfUnitsGroup = numberOfUnitsDim.group();
