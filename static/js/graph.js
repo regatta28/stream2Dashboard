@@ -8,8 +8,8 @@ function makeGraphs(error, socialHousingProjects) {
     }
 
     socialHousingProjects.forEach(function (d) {
-        d["LA"] = d["LA"];
-        d["Number of Units"] = +d["Number of Units"];
+        d.county = d["la"];
+        d.number_of_Units = +d["number_of_units"];
     });
 
 
@@ -24,11 +24,17 @@ function makeGraphs(error, socialHousingProjects) {
     var cityGroup = cityDim.group();
     var numberOfUnitsGroup = numberOfUnitsDim.group();
 
+    var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function(d) {return d.number_of_Units});
+
     var cityGroupChart = dc.lineChart("#housesPerArea");
+
+  
 
     cityGroupChart
         .dimension(cityDim)
-        .group(cityGroup);
+        .group(numberOfHousesPerCountyorCity)
+        .x(d3.scale.linear().domain([0, d3.max[numberOfHousesPerCountyorCity]]));
+
 
 
     dc.renderAll();
