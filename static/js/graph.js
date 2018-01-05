@@ -27,13 +27,17 @@ function makeGraphs(error, socialHousingProjects) {
     var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function(d) {return d.number_of_Units});
 
     var cityGroupChart = dc.lineChart("#housesPerArea");
+    var selectField = dc.selectMenu("#menu-select");
 
-  
+    selectField
+        .dimension(cityDim)
+        .group(cityGroup);
 
     cityGroupChart
         .dimension(cityDim)
         .group(numberOfHousesPerCountyorCity)
-        .x(d3.scale.linear().domain([0, d3.max[numberOfHousesPerCountyorCity]]));
+        .x(d3.scale.linear().domain([0, d3.max[numberOfHousesPerCountyorCity]]))
+        .renderArea(true);
 
 
 
