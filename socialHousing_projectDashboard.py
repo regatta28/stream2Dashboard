@@ -15,11 +15,14 @@ COLLECTION_NAME = 'projects'
 def index():
     return render_template("index.html")
 
-@app.route('socialHousing/projects')
+@app.route('/socialHousing/projects')
 def social_housing_projects():
 
     FIELDS = {
-        'LA': True, 'Scheme/Project Name': True,
+       "_id": False, "la": True,
+        "number_of_units": True,
+        "stage_one": True, "stage_two": True, "stage_three": True, "stage_four": True,
+        "site_start": True, "site_finish": True
     }
     with MongoClient(MONGODB_HOST, MONGODB_PORT) as conn:
         collection = conn[DBS_NAME][COLLECTION_NAME]
@@ -28,4 +31,5 @@ def social_housing_projects():
 
 
 if __name__ == '__main__':
-    app.run()
+
+    app.run(debug=True)
