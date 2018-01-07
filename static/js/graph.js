@@ -11,6 +11,7 @@ function makeGraphs(error, socialHousingProjects) {
         d.county = d["la"];
         d.number_of_Units = +d["number_of_units"];
         d.site_start = d["site_start"];
+        d.site_finish = d["site_finish"];
     });
 
 
@@ -23,16 +24,27 @@ function makeGraphs(error, socialHousingProjects) {
     });
     var siteStart = ndx.dimension( function(d) { return d["site_start"];
     });
+    var siteFinish = ndx.dimension( function(d) { return d["site_finish"];
+    });
+    var numberOfUnitsGroupDim = cityDim.group().reduceCount(function(d) {return d["number_of_units"];
+    });
+
+
 
     var cityGroup = cityDim.group();
     var numberOfUnitsGroup = numberOfUnitsDim.group();
     var siteStartGroup = siteStart.group();
+    var siteFinishGroup = siteFinish.group();
+
+
 
     var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function(d) {return d.number_of_Units});
 
-    var cityGroupChart = dc.lineChart("#housesPerArea");
+    var cityGroupChart = dc.barChart("#housesPerArea");
     var siteStartChart = dc.pieChart("#pie-chart-one");
     var selectField = dc.selectMenu("#menu-select");
+    var siteFinishChart = dc.pieChart("#pie-chart-two");
+
 
     selectField
         .dimension(cityDim)
@@ -46,13 +58,29 @@ function makeGraphs(error, socialHousingProjects) {
         .dimension(siteStart)
         .group(siteStartGroup);
 
+    siteFinishChart
+        .height(220)
+        .radius(90)
+        .innerRadius(40)
+        .transitionDuration(2000)
+        .dimension(siteFinish)
+        .group(siteFinishGroup);
+
+
     cityGroupChart
+        .width(768)
+        .height(480)
+        .margins({top: 10, right: 10, bottom: 20, left: 40})
+        .gap(30)
+        .brushOn(false)
+        .centerBar(true)
         .dimension(cityDim)
-        .group(numberOfHousesPerCountyorCity)
-        .x(d3.scale.linear().domain([0, d3.max[numberOfHousesPerCountyorCity]]))
-        .renderArea(true)
+        .group(numberOfUnitsGroupDim)
+        .x(d3.scale.linear().domain([0, cityDim.length +1]))
+        .renderLabel(true)
         .xAxisLabel("County/City")
-        .yAxis().ticks(6);
+        .elasticX(true)
+        .renderHorizontalGridLines(true);
 
 
 
