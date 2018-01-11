@@ -79,7 +79,7 @@ function makeGraphs(error, socialHousingProjects) {
         .centerBar(true)
         .dimension(cityDim)
         .group(cityGroup)
-        .x(d3.scale.ordinal())
+        .x(d3.scale.ordinal().range([minCity, maxCity]))
         .renderLabel(true)
         .xAxisLabel("County/City")
         .elasticX(true)
